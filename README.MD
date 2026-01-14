@@ -1,0 +1,2 @@
+# New project
+For fun
