@@ -1,11 +1,146 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>sample code</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Resume Box | Upload & Build</title>
+
+  <!-- Owl Carousel CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" />
+
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: Arial, sans-serif ;scroll-behavior: smooth;}
+    body { background: #f4f6f8; color: #333; }
+    header { background: #1e293b; color: #fff; padding: 20px; }
+    nav { display: flex; justify-content: space-between; align-items: center; }
+    nav a { color: #fff; margin-left: 15px; text-decoration: none; font-weight: bold; }
+    .container { width: 90%; max-width: 1100px; margin: auto; }
+    section { padding: 60px 0; }
+    .hero { background: #0f172a; color: #fff; text-align: center; padding: 80px 20px; }
+    .hero h1 { font-size: 2.5rem; margin-bottom: 10px; }
+    .hero p { font-size: 1.1rem; opacity: 0.9; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
+    .card { background: #fff; padding: 25px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.08); }
+    .card h3 { margin-bottom: 10px; }
+    .upload-box { border: 2px dashed #64748b; padding: 30px; text-align: center; border-radius: 10px; background: #fff; }
+    input[type=file] { margin-top: 15px; }
+    button { background: #2563eb; color: #fff; border: none; padding: 12px 20px; border-radius: 6px; cursor: pointer; }
+    button:hover { background: #1d4ed8; }
+    footer { background: #1e293b; color: #fff; text-align: center; padding: 20px; }
+    .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+
+    /* Owl Carousel styles */
+    .owl-carousel .item { background: #fff; padding: 30px; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); text-align: center; }
+    .owl-carousel .item h3 { margin-bottom: 10px; }
+
+    @media (max-width: 600px) {
+      .hero h1 { font-size: 2rem; }
+    }
+  </style>
 </head>
 <body>
-    
+
+<header>
+  <div class="container">
+    <nav>
+      <h2>ResumeBox</h2>
+      <div>
+        <a href="#home">Home</a>
+        <a href="#services">Services</a>
+        <a href="#upload">Upload</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<section id="home" class="hero">
+  <h1>Build & Upload Your Resume</h1>
+  <p>Simple, fast and responsive resume box website</p>
+</section>
+
+<section class="container">
+  <h2>Why Choose ResumeBox</h2><br />
+  <div class="owl-carousel owl-theme">
+    <div class="item"><h3>Easy Upload</h3><p>Upload your resume in one click.</p></div>
+    <div class="item"><h3>Responsive Design</h3><p>Works on mobile, tablet & desktop.</p></div>
+    <div class="item"><h3>Secure</h3><p>Your data stays private.</p></div>
+    <div class="item"><h3>Fast Access</h3><p>Access your resume anytime.</p></div>
+    <div class="item"><h3>Modern UI</h3><p>Clean and professional layout.</p></div>
+  </div>
+</section>
+
+<section id="services" class="container">
+  <h2>Our Services</h2><br />
+  <div class="grid">
+    <div class="card"><h3>Resume Upload</h3><p>Upload PDF or DOC files.</p></div>
+    <div class="card"><h3>Resume Storage</h3><p>Safe cloud-style storage.</p></div>
+    <div class="card"><h3>Resume Sharing</h3><p>Share with recruiters easily.</p></div>
+    <div class="card"><h3>Profile Creation</h3><p>Create a simple online profile.</p></div>
+  </div>
+</section>
+
+<section id="upload" class="container">
+  <h2>Upload Your Resume</h2><br />
+  <div class="upload-box">
+    <p>Select your resume file</p>
+    <input type="file" id="resume" />
+    <br /><br />
+    <button onclick="uploadResume()">Upload Resume</button>
+    <p id="status"></p>
+  </div>
+</section>
+
+<section id="contact" class="container">
+  <h2>Contact Us</h2><br />
+  <div class="contact-grid">
+    <div class="card"><h3>Email</h3><p>punitchoudhary.ac@gmail.com</p></div>
+    <div class="card"><h3>Phone</h3><p>+91 6397322342</p></div>
+    <div class="card"><h3>Location</h3><p>India</p></div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 ResumeBox. All rights reserved.</p>
+</footer>
+
+<!-- jQuery FIRST -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<!-- Owl Carousel JS AFTER jQuery -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+
+<script>
+  function uploadResume() {
+    const fileInput = document.getElementById('resume');
+    const status = document.getElementById('status');
+    if (fileInput.files.length === 0) {
+      status.innerText = 'Please select a file first.';
+      status.style.color = 'red';
+    } else {
+      status.innerText = 'Resume uploaded successfully (demo only).';
+      status.style.color = 'green';
+    }
+  }
+
+  // Owl Carousel initialization (safe because jQuery is loaded)
+  $(document).ready(function(){
+    $('.owl-carousel').owlCarousel({
+      loop: true,
+      margin: 20,
+      nav: true,
+      autoplay: true,
+      autoplayTimeout: 3000,
+      responsive: {
+        0: { items: 1 },
+        600: { items: 2 },
+        1000: { items: 3 }
+      }
+    });
+  });
+</script>
+
 </body>
 </html>
+ß
